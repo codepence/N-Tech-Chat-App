@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <title>N-Tech Chat App</title>
+</head>
+
+<body>
+    <!-- NAVBAR -->
+    <nav class="z-depth-0 teal">
+        <div class="nav-wrapper container">
+            <a href="#" class="brand-logo">
+                N-TECH
+            </a>
+            <a href="#" class="sidenav-trigger" data-target="mobile-menu">
+                <i class="material-icons">menu</i>
+            </a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li class="logged-in" style="display: none;">
+                    <a href="#" class=" modal-trigger" data-target="modal-account">Account</a>
+                </li>
+                <li class="logged-in" style="display: none;">
+                    <a href="#" id="logout">Logout</a>
+                </li>
+                <li class="logged-out" style="display: none;">
+                    <a href="#" class=" modal-trigger" data-target="modal-login">Login</a>
+                </li>
+                <li class="logged-out" style="display: none;">
+                    <a href="#" class="modal-trigger" data-target="modal-signup">Sign up</a>
+                </li>
+                </span>
+            </ul>
+    </nav>
+    <ul class="sidenav" id="mobile-menu">
+        <li class="logged-in" style="display:none;">
+            <a href="#" class="black-text modal-trigger" data-target="modal-account">Account</a>
+        </li>
+        <li class="logged-in" style="display:none;">
+            <a href="#" class="black-text" id="logout">Logout</a>
+        </li>
+        <li class="admin" style="display: none;">
+            <a href="#" class="black-text modal-trigger" data-target="modal-create">Create Profile</a>
+        </li>
+        <li class="logged-out" style="display:none;">
+            <a href="#" class="black-text modal-trigger" data-target="modal-login">Login</a>
+        </li>
+        <li class="logged-out" style="display:none;">
+            <a href="#" class="black-text modal-trigger" data-target="modal-signup">Sign up</a>
+        </li>
+    </ul>
+    </div>
+
+    <!-- SIGN UP MODAL -->
+    <div id="modal-signup" class="modal">
+        <div class="modal-content">
+            <h4>Sign up</h4><br />
+            <form id="signup-form">
+                <div class="input-field">
+                    <input type="email" id="signup-email" required />
+                    <label for="signup-email">Email address</label>
+                </div>
+                <div class="input-field">
+                    <input type="password" id="signup-password" required />
+                    <label for="signup-password">Choose password</label>
+                </div>
+                <button class="btn teal z-depth-0">Sign up</button>
+                <p class="error pink-text center-align"></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- LOGIN MODAL -->
+    <div id="modal-login" class="modal">
+        <div class="modal-content">
+            <h4>Login</h4><br />
+            <form id="login-form">
+                <div class="input-field">
+                    <input type="email" id="login-email" required />
+                    <label for="login-email">Email address</label>
+                </div>
+                <div class="input-field">
+                    <input type="password" id="login-password" required />
+                    <label for="login-password">Your password</label>
+                </div>
+                <button class="btn teal z-depth-0">Login</button>
+                <p class="error pink-text center-align"></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- ACCOUNT MODAL -->
+    <div id="modal-account" class="modal">
+        <div class="modal-content center-align">
+            <h4>Account details</h4><br />
+            <div class="account-details"></div>
+            <div class="account-extras"></div>
+        </div>
+    </div>
+    <!-- container -->
+
+    <div class="container logged-out center">
+        <h1>Log in to chat</h1>
+        <p>Sign up if you don't already have an account.</p>
+    </div>
+    <div class="container logged-in" style="display: none;">
+        <h1 class="center">N-Tech Chatroom</h1>
+
+
+        <!-- buttons for chartrooms -->
+        <div class="chat-rooms mb-3 text-center">
+            <h5 class="center">Choose a chatroom</h5>
+            <button class="btn" id="general">General</button>
+            <button class="btn" id="front&back">Front/Back End</button>
+            <button class="btn" id="digMark">Digital Marketing</button>
+            <button class="btn" id="compEss">Computer Essentials</button>
+        </div>
+
+        <!-- chat list / window -->
+        <div class="chat-window">
+            <ul class="chat-list list-group"></ul>
+        </div>
+
+        <!-- new chat form -->
+        <form class="new-chat my-3">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <div class="input-group-text info">Your message:</div>
+                </div>
+                <input type="text" class="form-control" id="message" required>
+                <div class="input-group-append">
+                    <input type="submit" class="btn" value="send">
+                </div>
+            </div>
+        </form>
+
+        <!-- update name form -->
+        <form class="new-name my-3">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <div class="input-group-text info">Update name:</div>
+                </div>
+                <input type="text" id="name" class="form-control" required>
+                <div class="input-group-append">
+                    <input type="submit" class="btn" value="update">
+                </div>
+            </div>
+            <div class="update-mssg center"></div>
+        </form>
+
+    </div>
+
+    <script src="http://cdn.date-fns.org/v1.9.0/date_fns.min.js"></script>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-firestore.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-analytics.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyAHI3V7qWSlRQXGnh3EoZWYHdtrmcHGnr4",
+            authDomain: "n-power-chat-app.firebaseapp.com",
+            databaseURL: "https://n-power-chat-app.firebaseio.com",
+            projectId: "n-power-chat-app",
+            storageBucket: "n-power-chat-app.appspot.com",
+            messagingSenderId: "756066102410",
+            appId: "1:756066102410:web:907be529c0c2fec4ad1173",
+            measurementId: "G-FY3H2L5K2M"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+
+        //make auth and firestore references
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+    </script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="scripts/chat.js"></script>
+    <script src="scripts/ui.js"></script>
+    <script src="scripts/app.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.sidenav').sidenav();
+        });
+    </script>
+
+</body>
+
+</html>
