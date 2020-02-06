@@ -32,7 +32,7 @@ class Chatroom {
                 snapshot.docChanges().forEach(change => {
                     if (change.type === 'added') {
                         // update the ui
-                        callback(change.doc.data())
+                        callback(change.doc.data());
                     }
                 });
             });

@@ -13,7 +13,7 @@ class ChatUI {
             data.created_at.toDate(), {
                 addSuffix: true
             }
-        )
+        );
         const html = `
             <li class="list-group-item">
                 <span class="username">${data.username}</span>
